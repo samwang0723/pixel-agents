@@ -2,6 +2,8 @@
 
 PORT ?= 7891
 CWD ?= $(shell pwd)
+RESOLVED_CWD := $(shell echo $(CWD) | sed 's|^~|$(HOME)|')
+TMUX_SESSION ?= $(shell basename $(RESOLVED_CWD))
 
 ## Build everything (extension + webview + standalone server)
 build: build-ext build-standalone
@@ -17,7 +19,7 @@ build-standalone:
 start: build
 	@lsof -t -i:$(PORT) | xargs kill 2>/dev/null || true
 	@echo "Starting Pixel Agents at http://localhost:$(PORT)"
-	node dist/standalone/server.js --cwd "$(CWD)" --port $(PORT)
+	node dist/standalone/server.js --cwd "$(RESOLVED_CWD)" --port $(PORT) --tmux-session "$(TMUX_SESSION)"
 
 ## Stop the server
 stop:
