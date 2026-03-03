@@ -79,6 +79,34 @@ Fair warning: the import pipeline is not exactly straightforward — the out-of-
 
 The extension will still work without the tileset — you'll get the default characters and basic layout, but the full furniture catalog requires the imported assets.
 
+## Standalone Mode (No VS Code Required)
+
+You can run Pixel Agents as a standalone web app in your browser — no VS Code needed.
+
+### Quick Start
+
+```bash
+make install   # Install all dependencies (first time only)
+make start     # Build and start the server
+```
+
+Then open **http://localhost:7891** in your browser.
+
+### Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `make install` | Install dependencies for extension, webview, and standalone server |
+| `make start` | Build everything and start the standalone server |
+| `make stop` | Stop the running server |
+| `make build` | Build without starting the server |
+| `make clean` | Remove build artifacts |
+
+### Options
+
+- **Custom port**: `make start PORT=8080`
+- **Custom working directory**: `make start CWD=/path/to/your/project`
+
 ## How It Works
 
 Pixel Agents watches Claude Code's JSONL transcript files to track what each agent is doing. When an agent uses a tool (like writing a file or running a command), the extension detects it and updates the character's animation accordingly. No modifications to Claude Code are needed — it's purely observational.
