@@ -1,9 +1,11 @@
 out
 dist
 node_modules
+.worktrees
 .vscode-test/
 *.vsix
 .claude/
 /logs
 /sprites-export
 .env
+.DS_Store
